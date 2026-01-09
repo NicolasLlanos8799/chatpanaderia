@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Instagram – Urban Style</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -36,6 +36,8 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      height: 100dvh;
+      /* Dynamic viewport height for mobile */
       color: var(--ig-black);
       overflow: hidden;
     }
@@ -44,9 +46,8 @@
     .chat-container {
       width: 100%;
       max-width: 375px;
-      /* Compact width like native mobile */
       height: 700px;
-      /* Compact height */
+      max-height: 100%;
       background: var(--ig-white);
       display: flex;
       flex-direction: column;
@@ -56,11 +57,17 @@
       position: relative;
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 480px) {
+      body {
+        align-items: flex-start;
+      }
+
       .chat-container {
         height: 100vh;
+        height: 100dvh;
         max-width: 100%;
         border: none;
+        box-shadow: none;
       }
     }
 
@@ -308,6 +315,8 @@
     /* FOOTER / INPUT */
     .chat-footer {
       padding: 12px 14px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      /* Support for modern iPhones */
       background: var(--ig-white);
     }
 
@@ -333,7 +342,8 @@
       outline: none;
       background: transparent;
       color: var(--ig-black);
-      font-size: 13.5px;
+      font-size: 16px;
+      /* Minimum for iOS no-zoom */
       font-family: inherit;
     }
 
@@ -373,14 +383,14 @@
     <!-- Header -->
     <header class="chat-header">
       <div class="header-left">
-        <div class="back-btn">
+        <a href="https://www.helloiagency.com" class="back-btn" style="text-decoration: none; color: inherit;">
           <svg aria-label="Volver" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24">
             <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line>
             <polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor"
               stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline>
           </svg>
-        </div>
+        </a>
         <div class="profile-info">
           <div class="avatar-wrapper">
             <div class="avatar" id="headerAvatar">
